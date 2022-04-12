@@ -95,7 +95,7 @@ desc 'Deploy the site to the gh_pages branch and push'
 task :deploy do
   FileUtils.rm_rf '_gh-pages'
   puts 'Cloning main branch...'
-  puts `git clone https://github.com/artsy/artsy.github.io.git _gh-pages`
+  puts `git clone https://github.com/joeyAghion/joeyAghion.github.io.git _gh-pages`
   Dir.chdir('_gh-pages') do
     puts `git checkout main`
   end
@@ -116,13 +116,11 @@ task :deploy do
     puts `git pull origin main`
 
     puts 'Creating a commit for the deploy.'
-
-    puts `git ls-files --deleted -z | xargs -0 git rm;`
-    puts `git add .`
+    puts `git add --all`
     puts `git commit -m "[skip ci] Deploy"`
 
     puts 'Pushing to github.'
-    puts `git push --quiet > /dev/null 2>&1`
+    puts `git push`
   end
 end
 
